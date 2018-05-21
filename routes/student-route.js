@@ -3,7 +3,7 @@ const Models = require('../models');
 const Student = Models.Student;
 
 routes.get('/students', (req, res) => {
-  Student.findAll({raw: true})
+  Student.findAll()
   .then((students) => {
     console.log(`success --->`,students)
     res.render('displayTables.ejs', {
@@ -37,6 +37,14 @@ routes.post('/students/add', (req, res) => {
       category: 'student',
       data: student,
       msg: 'Student has been added'
+    })
+  })
+  .catch(err => {
+    console.log(err);
+    res.render('inputForm', {
+      category: 'student',
+      data: student,
+      msg: err.message
     })
   })
 })
@@ -81,6 +89,11 @@ routes.post('/students/edit/:id', (req, res) => {
   })
   .catch((err) => {
     console.log('error --->', err);
+    res.render('editForm.ejs', {
+      category: 'student',
+      data: result,
+      msg: err.message
+    })
   })
 })
 

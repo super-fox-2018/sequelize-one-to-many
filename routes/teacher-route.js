@@ -56,6 +56,14 @@ routes.post('/teachers/add', (req, res) => {
       msg: 'Teacher has been added'
     })
   })
+  .catch(err => {
+    console.log(err);
+    res.render('inputForm', {
+      category: 'teacher',
+      data: teacher,
+      msg: err.message
+    })
+  })
 })
 
 routes.get('/teachers/edit/:id', (req, res) => {
@@ -73,7 +81,7 @@ routes.get('/teachers/edit/:id', (req, res) => {
     }
   })
   .catch((err) => {
-    console.log('error --->', err)
+    console.log('error ---->', err)
   })
 })
 
@@ -98,6 +106,11 @@ routes.post('/teachers/edit/:id', (req, res) => {
   })
   .catch((err) => {
     console.log('error --->', err);
+    res.render('editForm.ejs', {
+      category: 'teacher',
+      data: result,
+      msg: err.message
+    })
   })
 })
 

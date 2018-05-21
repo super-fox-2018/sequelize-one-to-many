@@ -3,7 +3,7 @@ const Models = require('../models');
 const Subject = Models.Subject;
 
 routes.get('/subjects', (req, res) => {
-  Subject.findAll({raw: true})
+  Subject.findAll()
   .then((subjects) => {
     console.log(`success --->`,subjects)
     res.render('displayTables.ejs', {
