@@ -5,24 +5,28 @@ const Subject = Models.Subject;
 
 routes.get('/teachers', (req, res) => {
   Teacher.findAll({
-    include: [{
+    order: [
+      ['id','ASC']
+    ],
+    include: [{ // Left Join
       model: Subject
     }]
   })
   .then((teachers) => {
     // console.log(`success --->`,teachers)
-    teachers.forEach((teacher) => {
+    // teachers.forEach((teacher) => {
       // teacher.getSubject()
       // .then((subject) => {
       //   console.log()
       //   console.log('--->',subject)
       // })
-      console.log(teacher);
-    })
-    // res.render('displayTables.ejs', {
-    //   category: 'teacher',
-    //   data: teachers
+      // console.log(teacher.Subject.subject_name);
     // })
+    // res.send(teachers)
+    res.render('displayTables.ejs', {
+      category: 'teacher',
+      data: teachers
+    })
   })
   .catch((err) => {
     console.log(`error --->`,err)
