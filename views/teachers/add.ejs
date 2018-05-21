@@ -1,0 +1,37 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Teachers-Add
+    </title>
+  </head>
+    <body>
+    <h2 style="text-align:center">Add Your Information: </h2>
+    <% if (error) {%>
+    <h3 style="text-align:center"><%= err%></h3>
+    <% }%>
+    <form action="/teacher/add" method="post" style="text-align:center">
+      <label> First Name: </label>
+      <input type="text" name="firstName" style="min-width: 150;" required><br><br>
+
+      <label> Last Name: </label>
+      <input type="text" name="lastName" style="min-width: 150;" required><br><br>
+
+      <label> Email: </label>
+      <input type="email" name="email" style="min-width: 180px;" required><br><br>
+
+      <label> Subjects: </label>
+      <select name="subject" style="min-width: 160px;" >
+        <option value=0></option>
+        <% subject.forEach(function(subject){ %>
+          <option value="<%= subject.id%>" ><%= subject.name%></option>
+        <% })%>
+      </select> <br><br>
+
+        <button type="submit" id="submitBtn" value = "submit"> Submit </button>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+        <button type="button"><a href="/teachers" style="text-decoration:none"> Cancel</a></button>
+      </form>
+    </div>
+  </body>
+</html>
