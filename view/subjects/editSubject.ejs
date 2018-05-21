@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+        <h1>Edit Subject</h1>
+        <p><a href ="/subjects">subject data</a></p>
+        <div class="edit_subject_table">
+            <form action="/subject/edit/<%= editSubject.id%>" method="post">
+                Subject:<br>
+                <input type="text" name="subjectName" value="<%= editSubject.subjectName%>">
+                <br>
+                <br><br>
+                <input type="submit" value="Edit Subject">
+            </form>
+        </div>
+    <p><a href ="/">home</a></p>
+</body>
+</html>
