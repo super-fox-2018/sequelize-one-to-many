@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Edit Teacher</h1>
+	<p><a href= "/teachers"><%= "<"%> Show all teacher</a></p>
+	<form action="/teachers/edit/<%=dataTeacher.id%>" method="post">
+	  First name:<br>
+	  <input type="text" name="first_name" value="<%=dataTeacher.first_name%>">
+	  <br>
+	  Last name:<br>
+	  <input type="text" name="last_name" value="<%=dataTeacher.last_name%>">
+	  <br>
+	  email:<br>
+	  <input type="text" name="email" value="<%=dataTeacher.email%>">
+	  <br>
+	  Subject Id:<br>
+	  <input type="text" name="SubjectId" value="<%=dataTeacher.SubjectId%>">
+	  <br>
+	  <br><br>
+	  <input type="submit" value="Submit">
+	</form> 
+	<p><%= err%></p>
+</body>
+</html>

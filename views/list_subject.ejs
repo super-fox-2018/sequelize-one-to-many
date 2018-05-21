@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<table border='2px' width='20%'>
+	  <tr>
+	  	<th>id</th>
+	    <th>Subject Name</th>
+	    <th>Teacher</th>
+	  </tr>
+	  <%for(var i=0;i<dataSubjects.length;i++) {%>
+	  <tr>
+	  	<td><%=dataSubjects[i].id %></td>
+	    <td><%=dataSubjects[i].subject_name%></td>
+	    <td>
+	    	<%var count = 1%>
+	    	<%for(var j=0;j<dataSubjects[i].Teachers.length;j++){%>
+	    		<%=`${count++}. ${dataSubjects[i].Teachers[j].first_name} ${dataSubjects[i].Teachers[j].last_name} ` %> <br>	
+	    	<%}%>	
+	    </td>
+	  </tr>
+	  <%}%>
+	</table>
+
+</body>
+</html>
