@@ -1,15 +1,28 @@
 const routes = require('express').Router();
 const Models = require('../models');
 const Teacher = Models.Teacher;
+const Subject = Models.Subject;
 
 routes.get('/teachers', (req, res) => {
-  Teacher.findAll({raw: true})
+  Teacher.findAll({
+    include: [{
+      model: Subject
+    }]
+  })
   .then((teachers) => {
-    console.log(`success --->`,teachers)
-    res.render('displayTables.ejs', {
-      category: 'teacher',
-      data: teachers
+    // console.log(`success --->`,teachers)
+    teachers.forEach((teacher) => {
+      // teacher.getSubject()
+      // .then((subject) => {
+      //   console.log()
+      //   console.log('--->',subject)
+      // })
+      console.log(teacher);
     })
+    // res.render('displayTables.ejs', {
+    //   category: 'teacher',
+    //   data: teachers
+    // })
   })
   .catch((err) => {
     console.log(`error --->`,err)
