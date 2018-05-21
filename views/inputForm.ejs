@@ -7,16 +7,33 @@
   <title>Input form: <%= category %></title>
 </head>
 <body>
+  <h3>Add <%= category%> </h3>
   <% if (msg) { %>
-    <h3> <%= msg %> </h3>
+    <p> <%= msg %> </p>
   <% } %>
 
-  <% if (category === 'student') { %>
-    <form action="/students/add" method="post">
-  <% } %>
-  <% if (category === 'teacher') { %>
-    <form action="/teachers/add" method="post">
-  <% } %>
+  <% if (category === 'subject') { %>
+    <form action="/subjects/add" method="post">
+      <table>
+        <tr>
+          <td>Subject Name:</td>
+          <td><input type="text" name="subjectName" id="subjectName"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="Submit Data">
+          </td>
+        </tr>
+      </table>
+    </form>
+  <% } else { %>
+    <% if (category === 'student') { %>
+      <form action="/students/add" method="post">
+    <% } %>
+    <% if (category === 'teacher') { %>
+      <form action="/teachers/add" method="post">
+    <% } %>
       <table>
         <tr>
           <td>First name:</td>
@@ -38,6 +55,6 @@
         </tr>
       </table>
     </form>
-  
+  <% } %>
 </body>
 </html>
