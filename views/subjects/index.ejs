@@ -1,0 +1,36 @@
+<%- include('../partials/_header') %>
+
+  <a class="main-link" href="/subjects/add">Add subject data</a>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Subject Name</th>
+        <th>Teacher</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% records.forEach(record => { %>
+        <tr>
+          <td><%= record.id %></td>
+          <td><%= record.subjectName %></td>
+          <td>
+              <% if (record.teachers.length > 0) { %>
+                <ol>
+                  <% record.teachers.forEach(teacher => { %>
+                    <li><%= teacher.getFullName() %></li>
+                  <% }) %>
+                </ol>
+              <% } else { %>
+                No teachers
+              <% } %>
+            </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <a class="home-link" href="/"><< back</a>
+
+<%- include('../partials/_footer') %>

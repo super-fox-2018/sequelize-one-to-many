@@ -1,0 +1,42 @@
+<%- include('../partials/_header') %>
+  <a class="main-link" href="/teachers/add">Add teacher data</a>
+
+  <% if (records.length > 0) {%>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% records.forEach(record => { %>
+            <tr>
+              <td><%= record.id %></td>
+              <td><%= record.firstName %></td>
+              <td><%= record.lastName %></td>
+              <td><%= record.email %></td>
+              <td><%= (record.Subject && record.Subject.subjectName) || 'unassigned' %></td>
+              <td>
+                <% const table = record.constructor.tableName %>
+                <a class="edit-button" href="/<%= table %>/edit/<%= record.id %>">Edit</a>
+                <form class="delete-form" action="/<%= table %>/delete/<%= record.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete this data?')">
+                  <input class="delete-button" type="submit" value="Delete">
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+  <% } else { %>
+    <p class="message">No teachers data, Please add a new one</p>
+  <% } %>
+  
+  
+  <a class="home-link" href="/"><< back</a>
+
+<%- include('../partials/_footer') %>
