@@ -10,18 +10,19 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: "Email format is incorrect"
         },
-        isUnique(value, callback){
+        isUnique(value, next){
           var self = this;
-          Teacher.findAll({ where: { email: value } })
+          Teacher.findOne({ where: { email: value } })
           .then(function (teacher) {
-            // console.log(teacher[0].id);
-            // console.log("----", self.id);
-            if (Number(self.id) !== Number(teacher[0].id)) {
-              callback("Email already exist");
+            if (teacher && Number(self.id) !== Number(teacher.id)) {
+              next("Email already exist");
             }
             else {
-              callback();
+              next();
             }
+          })
+          .catch(function(err){
+            console.log(err)
           })
         }
       }
