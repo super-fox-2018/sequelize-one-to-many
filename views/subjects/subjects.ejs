@@ -38,15 +38,21 @@ h1, p{
           <tr>
             <td><%= subject.id %></td>
             <td><%= subject.subjectName %></td>
-            <% let arrTeachers = [] %>
-            <% for(let i=0; i < subject.Teachers.length; i++){ %>
-              <% for(let i=0; i < subject.Teachers.length; i++){ %>
-                <%arrTeachers.push(subject.Teachers[i].firstName)%>
-                <% if (arrTeachers.length === subject.Teachers.length) {%>
-                  <td><%= arrTeachers %></td>
-                <%}%>
-              <%}%>
-            <%}%>
+            <td>
+              <ol>
+                  <% let arrTeachers = [] %>
+                  <% for(let i=0; i < subject.Teachers.length; i++){ %>
+                    <% for(let i=0; i < subject.Teachers.length; i++){ %>
+                     <%arrTeachers.push(generateFullname(subject.Teachers[i].firstName, subject.Teachers[i].lastName))%>
+                      <% if (arrTeachers.length === subject.Teachers.length) {%>
+                        <% for(let x=0; x<arrTeachers.length; x++){ %>
+                          <li> <%= arrTeachers[x] %></li>
+                        <% } %>
+                      <%}%>
+                    <%}%>
+                  <%}%>
+              </ol>
+            </td>
             <td><a href = "/subject/edit/<%=subject.id%>">edit</a> || <a href="/subject/delete/<%=subject.id%>" onclick = "return confirm('delete this subject?')"> delete</a> </td>
           </tr>
         <% })%>

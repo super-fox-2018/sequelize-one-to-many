@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const models = require('./../models')
+const helper = require('../helper/helpers')
 
 router.get('/subjects', function(req, res){
 	models.Subject.findAll({
@@ -10,6 +11,7 @@ router.get('/subjects', function(req, res){
 	})
     .then(subjectData => {
 		// console.log(subjectData[0].Teachers[0].firstName)
+				res.locals.generateFullname = helper.generateFullname
         res.render('subjects/subjects.ejs', {subjectData:subjectData})
     })
 
