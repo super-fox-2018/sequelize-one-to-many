@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Teacher Add Data</title>
+  </head>
+  <body>
+    <h1 align="center">Add Teacher Data</h1>
+    <div style="text-align:center">
+      <a href="/teachers">show all data</a>
+    </div>
+    <%if(typeof err != "undefined"){%>
+      <div style="color:red;"> <%= err %> </div>
+    <% } %>
+    <form action="/teachers/add" method="POST">
+      First name: <br/>
+      <input type="text" name="firstName"> <br/>
+      Last name: <br/>
+      <input type="text" name="lastName"> <br/>
+      Email: <br/>
+      <input type="text" name="email"> <br/>
+      <input type="submit" value="Add Teacher"/>
+    </form>
+  </body>
+</html>
