@@ -3,22 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Student Form</title>
+	<title>Teacher Form</title>
 	<link rel="stylesheet" href="">
 </head>
 <body>
-	<h2>Add Student Data</h2>
+	<h2>Add Teacher Data</h2>
 	<a href='/teacher'>show all data</a>
   <br>
   <br>
 	<div>
 		<form action="/teacher/add" method="post">
-			First Name: <br><input type="text" name="firstName"><br><br>
-			Last Name: <br><input type="text" name="lastName"><br><br>
-			Email: <br><input type="text" name="email"><br><br>
-      Subject Id:<br><input type=INTEGER name="subjectId"><br><br>
-			<button type="submit" onclick="alert('Succesfully registered')" value="submit">Add Teacher</button>
-		</form>
+			<%-include ./parsials/parsials.ejs%>
+		<button type="submit" value="submit">Add Teacher</button>
 	</div>
 </body>
 </html>
