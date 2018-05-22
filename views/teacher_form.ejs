@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Teacher Form</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<h2>Add Teacher Data</h2>
+	<a href='/teacher'>show all data</a>
+  <br>
+  <br>
+	<div>
+		<form action="/teacher/add" method="post">
+			<%-include ./parsials/parsials.ejs%>
+		<button type="submit" value="submit">Add Teacher</button>
+	</div>
+</body>
+</html>
