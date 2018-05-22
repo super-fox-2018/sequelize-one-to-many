@@ -3,7 +3,28 @@ module.exports = (sequelize, DataTypes) => {
   var Teacher = sequelize.define('Teacher', {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: {
+          args: true,
+          msg: 'Email format is incorrect'
+        },
+        isUnique(value, callback) {
+          Teacher.findOne({
+            where: { email: value }
+          })
+          .then(function(teacher) {
+            let self = this;
+            if (teacher && (self.id !== teacher.id)) {
+              callback('Email already exists');
+            } else {
+              callback();
+            }
+          })
+        }
+      }
+    }
     // subject_id: DataTypes.INTEGER
   }, {});
   Teacher.associate = function(models) {

@@ -40,10 +40,10 @@ routes.post('/students/add', (req, res) => {
     })
   })
   .catch(err => {
-    console.log(err);
+    console.log("--------->",err);
     res.render('inputForm', {
       category: 'student',
-      data: student,
+      data: {},
       msg: err.message
     })
   })
@@ -91,7 +91,7 @@ routes.post('/students/edit/:id', (req, res) => {
     console.log('error --->', err);
     res.render('editForm.ejs', {
       category: 'student',
-      data: result,
+      data: {},
       msg: err.message
     })
   })

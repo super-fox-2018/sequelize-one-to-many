@@ -57,10 +57,10 @@ routes.post('/teachers/add', (req, res) => {
     })
   })
   .catch(err => {
-    console.log(err);
+    console.log('--->', err);
     res.render('inputForm', {
       category: 'teacher',
-      data: teacher,
+      data: {},
       msg: err.message
     })
   })
@@ -108,7 +108,7 @@ routes.post('/teachers/edit/:id', (req, res) => {
     console.log('error --->', err);
     res.render('editForm.ejs', {
       category: 'teacher',
-      data: result,
+      data: {},
       msg: err.message
     })
   })

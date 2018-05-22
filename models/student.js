@@ -12,10 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         isUnique(value, callback) {
           Student.findOne({
-            where: { email: value }
+            where: { 
+              email: value
+              // where id is not id
+            }
           })
           .then(function(student) {
-            if (student) {
+            let self = this
+            if (student && (self.id !== student.id)) {
               callback('Email already exists')
             } else {
               callback()
