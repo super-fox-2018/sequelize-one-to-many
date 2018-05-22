@@ -26,7 +26,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
     // subject_id: DataTypes.INTEGER
-  }, {});
+  }, {
+    hooks: {
+      beforeCreate: (teacher, options) => {
+        let firstName = teacher.first_name
+        teacher.first_name = 'Teacher ' + firstName;
+      }
+    }
+  });
+  
   Teacher.associate = function(models) {
     // associations can be defined here
     Teacher.belongsTo(models.Subject, {

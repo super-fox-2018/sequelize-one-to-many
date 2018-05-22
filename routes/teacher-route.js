@@ -3,7 +3,7 @@ const Models = require('../models');
 const Teacher = Models.Teacher;
 const Subject = Models.Subject;
 
-routes.get('/teachers', (req, res) => {
+routes.get('/', (req, res) => {
   Teacher.findAll({
     order: [
       ['id','ASC']
@@ -34,7 +34,7 @@ routes.get('/teachers', (req, res) => {
   })
 })
 
-routes.get('/teachers/add', (req, res) => {
+routes.get('/add', (req, res) => {
   res.render('inputForm', {
     category: 'teacher',
     msg: '',
@@ -42,7 +42,7 @@ routes.get('/teachers/add', (req, res) => {
   })
 })
 
-routes.post('/teachers/add', (req, res) => {
+routes.post('/add', (req, res) => {
   Teacher.create({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
@@ -66,7 +66,7 @@ routes.post('/teachers/add', (req, res) => {
   })
 })
 
-routes.get('/teachers/edit/:id', (req, res) => {
+routes.get('/edit/:id', (req, res) => {
   let id = req.params.id;
   // console.log('ID:', id);
   Teacher.findById(id)
@@ -85,7 +85,7 @@ routes.get('/teachers/edit/:id', (req, res) => {
   })
 })
 
-routes.post('/teachers/edit/:id', (req, res) => {
+routes.post('/edit/:id', (req, res) => {
   let id = req.params.id;
   Teacher.update({
     first_name: req.body.firstName,
@@ -114,7 +114,7 @@ routes.post('/teachers/edit/:id', (req, res) => {
   })
 })
 
-routes.get('/teachers/delete/:id', (req, res) => {
+routes.get('/delete/:id', (req, res) => {
   let id = req.params.id
   Teacher.findById(id)
   .then((teacher) => {
@@ -129,7 +129,7 @@ routes.get('/teachers/delete/:id', (req, res) => {
   })
 })
 
-routes.post('/teachers/delete/:id', (req, res) => {
+routes.post('/delete/:id', (req, res) => {
   let id = req.params.id;
   Teacher.destroy({
     where: {id}

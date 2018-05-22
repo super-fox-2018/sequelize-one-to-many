@@ -2,7 +2,7 @@ const routes = require('express').Router();
 const Models = require('../models');
 const Student = Models.Student;
 
-routes.get('/students', (req, res) => {
+routes.get('/', (req, res) => {
   Student.findAll()
   .then((students) => {
     console.log(`success --->`,students)
@@ -17,7 +17,7 @@ routes.get('/students', (req, res) => {
   })
 })
 
-routes.get('/students/add', (req, res) => {
+routes.get('/add', (req, res) => {
   res.render('inputForm', {
     category: 'student',
     msg: '',
@@ -25,7 +25,7 @@ routes.get('/students/add', (req, res) => {
   })
 })
 
-routes.post('/students/add', (req, res) => {
+routes.post('/add', (req, res) => {
   Student.create({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
@@ -49,7 +49,7 @@ routes.post('/students/add', (req, res) => {
   })
 })
 
-routes.get('/students/edit/:id', (req, res) => {
+routes.get('/edit/:id', (req, res) => {
   let id = req.params.id;
   // console.log('ID:', id);
   Student.findById(id)
@@ -68,7 +68,7 @@ routes.get('/students/edit/:id', (req, res) => {
   })
 })
 
-routes.post('/students/edit/:id', (req, res) => {
+routes.post('/edit/:id', (req, res) => {
   let id = req.params.id;
   Student.update({
     first_name: req.body.firstName,
@@ -97,7 +97,7 @@ routes.post('/students/edit/:id', (req, res) => {
   })
 })
 
-routes.get('/students/delete/:id', (req, res) => {
+routes.get('/delete/:id', (req, res) => {
   let id = req.params.id
   Student.findById(id)
   .then((student) => {
@@ -112,7 +112,7 @@ routes.get('/students/delete/:id', (req, res) => {
   })
 })
 
-routes.post('/students/delete/:id', (req, res) => {
+routes.post('/delete/:id', (req, res) => {
   let id = req.params.id;
   Student.destroy({
     where: {id}

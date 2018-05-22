@@ -2,7 +2,7 @@ const routes = require('express').Router();
 const Models = require('../models');
 const Subject = Models.Subject;
 
-routes.get('/subjects', (req, res) => {
+routes.get('/', (req, res) => {
   Subject.findAll()
   .then((subjects) => {
     console.log(`success --->`,subjects)
@@ -17,7 +17,7 @@ routes.get('/subjects', (req, res) => {
   })
 })
 
-routes.get('/subjects/add', (req, res) => {
+routes.get('/add', (req, res) => {
   res.render('inputForm', {
     category: 'subject',
     msg: '',
@@ -25,7 +25,7 @@ routes.get('/subjects/add', (req, res) => {
   })
 })
 
-routes.post('/subjects/add', (req, res) => {
+routes.post('/add', (req, res) => {
   Subject.create({
     subject_name: req.body.subjectName
   })
@@ -39,7 +39,7 @@ routes.post('/subjects/add', (req, res) => {
   })
 })
 
-routes.get('/subjects/edit/:id', (req, res) => {
+routes.get('/edit/:id', (req, res) => {
   let id = req.params.id;
   // console.log('ID:', id);
   Subject.findById(id)
@@ -58,7 +58,7 @@ routes.get('/subjects/edit/:id', (req, res) => {
   })
 })
 
-routes.post('/subjects/edit/:id', (req, res) => {
+routes.post('/edit/:id', (req, res) => {
   let id = req.params.id;
   Subject.update({
     subject_name: req.body.subjectName
@@ -80,7 +80,7 @@ routes.post('/subjects/edit/:id', (req, res) => {
   })
 })
 
-routes.get('/subjects/delete/:id', (req, res) => {
+routes.get('/delete/:id', (req, res) => {
   let id = req.params.id
   Subject.findById(id)
   .then((subject) => {
@@ -95,7 +95,7 @@ routes.get('/subjects/delete/:id', (req, res) => {
   })
 })
 
-routes.post('/subjects/delete/:id', (req, res) => {
+routes.post('/delete/:id', (req, res) => {
   let id = req.params.id;
   Subject.destroy({
     where: {id}

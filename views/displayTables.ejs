@@ -7,6 +7,11 @@
   <title>Display <%= category %></title>
 </head>
 <body>
+  <header>
+    <!-- <% let toTitleCase = require('../helpers/toTitleCase.js') %> -->
+    <% include ./partials/header %>
+  </header>
+  <h3><%= category %> Database</h3>
   <% if (category === 'student') { %>
     <a href="/students/add">Add student</a>
     <br><br>
@@ -82,5 +87,8 @@
   <%} %>
   <br>
   <a href="/">Back</a>
+  <footer>
+    <% include ./partials/footer %>
+  </footer>
 </body>
 </html>
