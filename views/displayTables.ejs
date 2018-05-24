@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Display <%= category %></title>
+</head>
+<body>
+  <header>
+    <!-- <% let toTitleCase = require('../helpers/toTitleCase.js') %> -->
+    <% include ./partials/header %>
+  </header>
+  <h3><%= category %> Database</h3>
+  <% if (category === 'student') { %>
+    <a href="/students/add">Add student</a>
+    <br><br>
+    <table border=1>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Options</th>
+      </tr>
+      <% data.forEach((student) => { %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.first_name %></td>
+          <td><%= student.last_name %></td>
+          <td><%= student.email %></td>
+          <td>
+            <a href="/students/edit/<%= student.id %>">Edit</a> | 
+            <a href="/students/delete/<%= student.id %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  <%} %>
+  <% if (category === 'teacher') { %>
+    <a href="/teachers/add">Add teacher</a>
+    <br><br>
+    <table border=1>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Options</th>
+      </tr>
+      <% data.forEach((teacher) => { %>
+        <tr>
+          <td><%= teacher.id %></td>
+          <td><%= teacher.first_name %></td>
+          <td><%= teacher.last_name %></td>
+          <td><%= teacher.email %></td>
+          <td><%= teacher.Subject ? teacher.Subject.subject_name : 'Unassigned' %></td>
+          <td>
+            <a href="/teachers/edit/<%= teacher.id %>">Edit</a> | 
+            <a href="/teachers/delete/<%= teacher.id %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  <%} %>
+  <% if (category === 'subject') { %>
+    <a href="/subjects/add">Add subject</a>
+    <br><br>
+    <table border=1>
+      <tr>
+        <th>ID</th>
+        <th>Subject Name</th>
+        <th>Options</th>
+      </tr>
+      <% data.forEach((subject) => { %>
+        <tr>
+          <td><%= subject.id %></td>
+          <td><%= subject.subject_name %></td>
+          <td>
+            <a href="/subjects/edit/<%= subject.id %>">Edit</a> | 
+            <a href="/subjects/delete/<%= subject.id %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  <%} %>
+  <br>
+  <a href="/">Back</a>
+  <footer>
+    <% include ./partials/footer %>
+  </footer>
+</body>
+</html>
